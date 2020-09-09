@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Elsa.Activities.Console.Extensions;
 using Elsa.Activities.Email.Extensions;
 using Elsa.Activities.Http.Extensions;
 using Elsa.Activities.Timers.Extensions;
@@ -36,8 +37,11 @@ namespace ElsaWorkflow
 				.AddHttpActivities(options => options.Bind(Configuration.GetSection("Elsa:Http")))
 				.AddEmailActivities(options => options.Bind(Configuration.GetSection("Elsa:Smtp")))
 				.AddTimerActivities(options => options.Bind(Configuration.GetSection("Elsa:Timers")))
+				.AddConsoleActivities()
 
 				.AddWorkflow<TestWorkflow>()
+
+				.AddActivity<CalculateSquare>()
 
 				.AddElsaDashboard()
 				;
